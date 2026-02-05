@@ -99,6 +99,7 @@
     });
 
      yesBtn.addEventListener("click", () => {
+	 sendResponseToSheet("YES");
     // 🎉 Confetti burst
     confetti({
       particleCount: 150,
@@ -130,8 +131,19 @@
 
     setTimeout(() => heart.remove(), 3000);
   }
+
+  function sendResponseToSheet(response) {
+  fetch("https://script.google.com/macros/s/AKfycbxDIFyw6uhmpGRXvNsYjDev18oQWk0ddtmh-eLEQQlAN80QMTG2it8O0wu2lcBhZnPn6Q/exec", {
+    method: "POST",
+    body: JSON.stringify({ response }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+}
   </script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
+
 
