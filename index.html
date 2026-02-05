@@ -133,18 +133,21 @@
       setTimeout(() => heart.remove(), 3000);
     }
 
-  function sendResponseToSheet(response) {
+function sendResponseToSheet(response) {
     const url =
       "https://script.google.com/macros/s/AKfycbxDIFyw6uhmpGRXvNsYjDev18oQWk0ddtmh-eLEQQlAN80QMTG2it8O0wu2lcBhZnPn6Q/exec?response=" +
       encodeURIComponent(response);
   
-    // Navigate in the SAME tab (guaranteed delivery)
-    window.location.href = url;
-    }
+    const win = window.open(url, "_blank", "width=1,height=1");
+    setTimeout(() => {
+      if (win) win.close();
+    }, 300);
+}
   </script>
 
 </body>
 </html>
+
 
 
 
