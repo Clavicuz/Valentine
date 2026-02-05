@@ -134,20 +134,17 @@
     }
 
 function sendResponseToSheet(response) {
-  fetch(
-    "https://script.google.com/macros/s/AKfycbxDIFyw6uhmpGRXvNsYjDev18oQWk0ddtmh-eLEQQlAN80QMTG2it8O0wu2lcBhZnPn6Q/exec?response=" +
-      encodeURIComponent(response),
-    {
-      method: "GET",
-      mode: "no-cors",
-      keepalive: true
-    }
-  );
+  const url =
+    "NEW_URL/exec?response=" + encodeURIComponent(response);
+
+  // Same-tab navigation (cannot be blocked)
+  window.location.href = url;
 }
   </script>
 
 </body>
 </html>
+
 
 
 
