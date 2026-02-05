@@ -134,19 +134,21 @@
     }
 
 function sendResponseToSheet(response) {
-    const url =
-      "https://script.google.com/macros/s/AKfycbxDIFyw6uhmpGRXvNsYjDev18oQWk0ddtmh-eLEQQlAN80QMTG2it8O0wu2lcBhZnPn6Q/exec?response=" +
-      encodeURIComponent(response);
-  
-    const win = window.open(url, "_blank", "width=1,height=1");
-    setTimeout(() => {
-      if (win) win.close();
-    }, 300);
+  fetch(
+    "https://script.google.com/macros/s/AKfycbxDIFyw6uhmpGRXvNsYjDev18oQWk0ddtmh-eLEQQlAN80QMTG2it8O0wu2lcBhZnPn6Q/exec?response=" +
+      encodeURIComponent(response),
+    {
+      method: "GET",
+      mode: "no-cors",
+      keepalive: true
+    }
+  );
 }
   </script>
 
 </body>
 </html>
+
 
 
 
