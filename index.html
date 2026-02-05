@@ -132,14 +132,19 @@
     }
 
    function sendResponseToSheet(response) {
-    sheetPing = new Image();
-    sheetPing.src =
-      "https://script.google.com/macros/s/AKfycbxDIFyw6uhmpGRXvNsYjDev18oQWk0ddtmh-eLEQQlAN80QMTG2it8O0wu2lcBhZnPn6Q/exec?response=" +
+  fetch(
+    "https://script.google.com/macros/s/AKfycbxDIFyw6uhmpGRXvNsYjDev18oQWk0ddtmh-eLEQQlAN80QMTG2it8O0wu2lcBhZnPn6Q/exec?response=" +
       encodeURIComponent(response) +
-      "&t=" + Date.now(); // cache buster
+      "&t=" + Date.now(),
+    {
+      method: "GET",
+      mode: "no-cors"
     }
+  );
+}
   </script>
 
 </body>
 </html>
+
 
