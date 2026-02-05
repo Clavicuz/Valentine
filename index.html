@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Will You Be My Valentine? ❤️</title>
+
   <style>
     body {
       height: 100vh;
@@ -40,33 +42,33 @@
     #yesBtn {
       background: #ff4d6d;
       color: white;
-	  margin-left: -150px
+      margin-left: -150px;
     }
 
     #noBtn {
       background: #ccc;
       color: #333;
       position: absolute;
-	  margin-right= 100px
     }
 
     .success {
-      font-size: 20px;
+      font-size: 22px;
       color: #ff4d6d;
     }
 
-	@keyframes floatUp {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
-}
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <div class="card" id="card">
@@ -75,74 +77,67 @@
     <button id="noBtn">No 😐</button>
   </div>
 
+  <!-- Load confetti FIRST -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <script>
     const noBtn = document.getElementById("noBtn");
     const card = document.getElementById("card");
     const yesBtn = document.getElementById("yesBtn");
 
-    // Place "No" button initially
+    // Initial position of "No"
     noBtn.style.top = "135px";
     noBtn.style.left = "350px";
-	
-	
+
     noBtn.addEventListener("mouseenter", () => {
-      const cardRect = card.getBoundingClientRect();
+      const maxX = card.clientWidth - noBtn.offsetWidth;
+      const maxY = card.clientHeight - noBtn.offsetHeight;
 
-      const maxX = cardRect.width - noBtn.offsetWidth;
-      const maxY = cardRect.height - noBtn.offsetHeight;
-
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
-
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.top = `${randomY}px`;
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
     });
 
-     yesBtn.addEventListener("click", () => {
-	 sendResponseToSheet("YES");
-    // 🎉 Confetti burst
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: { y: 0.6 }
+    yesBtn.addEventListener("click", () => {
+      sendResponseToSheet("YES");
+
+      // 🎉 Confetti
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+
+      // 💕 Hearts
+      for (let i = 0; i < 15; i++) {
+        createHeart();
+      }
+
+      card.innerHTML = `
+        <h1 class="success">Yayyy! 💕🥰</h1>
+        <p>See you on Valentine’s Day ❤️</p>
+      `;
     });
 
-    // 💕 Floating hearts effect
-    for (let i = 0; i < 15; i++) {
-      createHeart();
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.textContent = "💖";
+      heart.style.position = "fixed";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.bottom = "0";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.animation = "floatUp 3s ease-out forwards";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 3000);
     }
 
-    // 💖 Success message
-    card.innerHTML = `
-      <h1 class="success">Yayyy! 💕🥰</h1>
-      <p>See you on Valentine’s Day ❤️</p>
-    `;
-  });
-
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.innerHTML = "💖";
-    heart.style.position = "fixed";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.bottom = "0px";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
-    heart.style.animation = "floatUp 3s ease-out forwards";
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 3000);
-  }
-
- function sendResponseToSheet(response) {
-  const img = new Image();
-  img.src = "https://script.google.com/macros/s/AKfycbznER-HHP-yIgueZvOytkqhydC80XrQhNXHp2Fb_nQC5IpHDk2ZuPWXHufMPniDqi-bTQ/exec" + response;
-}
-  });
-}
+    function sendResponseToSheet(response) {
+      const img = new Image();
+      img.src =
+        "https://script.google.com/macros/s/AKfycbxDIFyw6uhmpGRXvNsYjDev18oQWk0ddtmh-eLEQQlAN80QMTG2it8O0wu2lcBhZnPn6Q/exec?response=" +
+        response;
+    }
   </script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 </body>
 </html>
-
-
-
-
