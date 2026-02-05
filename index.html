@@ -54,6 +54,17 @@
       font-size: 20px;
       color: #ff4d6d;
     }
+
+	@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
   </style>
 </head>
 <body>
@@ -87,13 +98,40 @@
       noBtn.style.top = `${randomY}px`;
     });
 
-    yesBtn.addEventListener("click", () => {
-      card.innerHTML = `
-        <h1 class="success">Yayyy! 💕🥰</h1>
-        <p>See you on Valentine’s Day ❤️</p>
-      `;
+     yesBtn.addEventListener("click", () => {
+    // 🎉 Confetti burst
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 }
     });
-  </script>
 
+    // 💕 Floating hearts effect
+    for (let i = 0; i < 15; i++) {
+      createHeart();
+    }
+
+    // 💖 Success message
+    card.innerHTML = `
+      <h1 class="success">Yayyy! 💕🥰</h1>
+      <p>See you on Valentine’s Day ❤️</p>
+    `;
+  });
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "0px";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    heart.style.animation = "floatUp 3s ease-out forwards";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 3000);
+  }
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
+
