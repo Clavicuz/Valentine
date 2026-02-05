@@ -98,8 +98,10 @@
     });
 
     yesBtn.addEventListener("click", () => {
-      sendResponseToSheet("YES");
+       console.log("YES button clicked");
+      alert("YES CLICKED");
 
+      sendResponseToSheet("YES");
       // 🎉 Confetti
       confetti({
         particleCount: 150,
@@ -146,5 +148,6 @@
 
 </body>
 </html>
+
 
 
