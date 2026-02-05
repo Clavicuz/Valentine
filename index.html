@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Will You Be My Valentine? ❤️</title>
+  <title>HelloThere</title>
 
   <style>
     body {
@@ -72,7 +72,7 @@
 <body>
 
   <div class="card" id="card">
-    <h1>Hi Shobaa, Will you be my Valentine? 💖</h1>
+    <h1>Hi Shobaa, will you be my Valentine? 💖</h1>
     <button id="yesBtn">Yes ❤️</button>
     <button id="noBtn">No 😐</button>
   </div>
@@ -98,9 +98,7 @@
     });
 
     yesBtn.addEventListener("click", () => {
-       console.log("YES button clicked");
-      alert("YES CLICKED");
-
+    
       sendResponseToSheet("YES");
       // 🎉 Confetti
       confetti({
@@ -116,7 +114,7 @@
 
       card.innerHTML = `
         <h1 class="success">Yayyy! 💕🥰</h1>
-        <p>See you on Valentine’s Day ❤️</p>
+        <p>See you on 7th!❤️ (Since we're not going to see each other on the actual Valentines day 🌚) </p>
       `;
     });
 
@@ -144,6 +142,7 @@ function sendResponseToSheet(response) {
 
 </body>
 </html>
+
 
 
 
